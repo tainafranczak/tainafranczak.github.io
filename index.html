@@ -124,6 +124,13 @@ section{padding-block:clamp(64px,9vw,120px)}
 .sobre h2{margin:14px 0 20px}
 .sobre p{color:var(--ink-2);margin-bottom:16px}
 .sobre .btn{margin-top:14px}
+.sobre .acoes{display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin-top:14px}
+.sobre .acoes .btn{margin-top:0}
+.ig{display:inline-flex;align-items:center;gap:8px;color:var(--petroleo);font-weight:600;text-decoration:none;font-size:.95rem}
+.ig svg{width:20px;height:20px}
+.ig:hover{color:var(--caramelo)}
+footer .ig{color:rgba(241,239,237,.75);font-weight:500}
+footer .ig:hover{color:#fff}
 
 /* 90 dias */
 .noventa{background:var(--off-2)}
@@ -306,7 +313,10 @@ footer p{line-height:1.5}
       <p>Eu sou Tainá Franczak, nutricionista, e acredito que um bom planejamento nutricional precisa funcionar muito além do papel.</p>
       <p>Por isso, meu trabalho começa entendendo sua rotina, seus objetivos, suas preferências e suas dificuldades. A partir disso, construímos uma estratégia individualizada e acompanhamos sua evolução durante todo o processo.</p>
       <p>Porque você não precisa de mais uma dieta impossível de manter. <strong>Precisa de uma estratégia que funcione na sua vida.</strong></p>
-      <a class="btn btn--ghost wa" href="#" target="_blank" rel="noopener">Conversar com a Tainá</a>
+      <div class="acoes">
+        <a class="btn btn--ghost wa" href="#" target="_blank" rel="noopener">Conversar com a Tainá</a>
+        <a class="ig" href="https://www.instagram.com/nutri.tainafranczak/" target="_blank" rel="noopener" data-track="instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>@nutri.tainafranczak</a>
+      </div>
     </div>
   </div>
 </section>
@@ -358,6 +368,7 @@ footer p{line-height:1.5}
 <footer>
   <div class="wrap">
     <img src="img/wordmark-h-light.svg" alt="Tainá Franczak">
+    <a class="ig" href="https://www.instagram.com/nutri.tainafranczak/" target="_blank" rel="noopener" data-track="instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>@nutri.tainafranczak</a>
     <p>Tainá Franczak · Nutricionista · CRN 12790P<br>Este conteúdo não substitui consulta individual. Resultados variam de pessoa para pessoa.</p>
   </div>
 </footer>
@@ -371,10 +382,26 @@ footer p{line-height:1.5}
   var NUMERO = '5554994279481';
   var MSG = 'Oi Tainá! Vi a página do Projeto 90 Dias e quero entender como funciona.';
   var link = 'https://wa.me/' + NUMERO + '?text=' + encodeURIComponent(MSG);
+
+  // Identifica de qual seção veio o clique (aparece nos relatórios do Meta)
+  function secaoDe(el){
+    var sec = el.closest('section, header, footer');
+    if (!sec) return 'flutuante';
+    return sec.id || sec.className.split(' ')[0] || 'pagina';
+  }
+
+  // ---- WhatsApp: evento padrão "Contact" (pode ser usado como conversão da campanha) ----
   document.querySelectorAll('a.wa').forEach(function(a){
     a.href = link;
     a.addEventListener('click', function(){
-      if (window.fbq) fbq('track', 'Contact');   // evento de conversão no Meta Pixel
+      if (window.fbq) fbq('track', 'Contact', { content_name: 'whatsapp', content_category: secaoDe(a) });
+    });
+  });
+
+  // ---- Instagram: evento personalizado "ClickInstagram" ----
+  document.querySelectorAll('[data-track="instagram"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if (window.fbq) fbq('trackCustom', 'ClickInstagram', { content_category: secaoDe(a) });
     });
   });
 </script>
