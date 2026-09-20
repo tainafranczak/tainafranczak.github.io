@@ -428,11 +428,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ultimoY = window.scrollY;
   }, { passive: true });
 
-  // ---- WhatsApp: evento padrão "Contact" (pode ser usado como conversão da campanha) ----
+  // ---- WhatsApp: evento padrão "Lead" (pode ser usado como conversão da campanha) ----
   document.querySelectorAll('a.wa').forEach(function(a){
     a.href = link;
     a.addEventListener('click', function(){
-      if (window.fbq) fbq('track', 'Contact', { content_name: 'whatsapp', content_category: secaoDe(a) });
+      if (window.fbq) fbq('track', 'Lead', { content_name: 'whatsapp', content_category: secaoDe(a) });
       (window.dataLayer = window.dataLayer || []).push({ event: 'clique_whatsapp', secao: secaoDe(a) });
     });
   });
