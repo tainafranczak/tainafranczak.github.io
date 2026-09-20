@@ -180,7 +180,17 @@ footer p{line-height:1.5}
   .hero-photo::after{background:linear-gradient(0deg,var(--petroleo-noite) 0%,rgba(10,43,47,0) 45%)}
   .hero-copy{padding-top:0;margin-top:-40px;position:relative}
   .dores .grid,.como .steps,.para,.sobre .wrap,.noventa .wrap{grid-template-columns:1fr}
-  .sobre-photo{max-width:420px}
+  /* Sobre: tudo cabe numa tela ao chegar pelo botão do topo */
+  .sobre{padding-block:36px 56px}
+  .sobre .wrap{gap:22px}
+  .sobre-photo{max-width:none}
+  .sobre-photo img{aspect-ratio:16/10;max-height:230px;width:100%;object-position:50% 18%}
+  .sobre-photo .mark{width:64px;right:-6px;top:-10px}
+  .sobre-photo .tag{left:14px;bottom:14px;padding:8px 14px;font-size:.78rem}
+  .sobre-photo .tag b{font-size:1.1rem}
+  .sobre h2{font-size:clamp(1.6rem,7vw,2rem);margin:8px 0 12px}
+  .sobre p{font-size:.95rem;margin-bottom:10px;line-height:1.5}
+  .sobre .btn{margin-top:8px}
   .noventa .big{font-size:clamp(6rem,30vw,9rem)}
   .btn{width:100%;justify-content:center}
   .nav .btn{width:auto}
