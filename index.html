@@ -2,6 +2,13 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P2KKXCSC');</script>
+<!-- End Google Tag Manager -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Projeto 90 Dias — Tainá Franczak | Nutricionista</title>
 <meta name="description" content="Acompanhamento nutricional de 90 dias para evoluir o físico com uma estratégia personalizada, possível de manter na rotina. Com a nutricionista Tainá Franczak.">
@@ -203,6 +210,10 @@ footer p{line-height:1.5}
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P2KKXCSC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- NAV -->
 <header class="nav">
@@ -422,6 +433,7 @@ footer p{line-height:1.5}
     a.href = link;
     a.addEventListener('click', function(){
       if (window.fbq) fbq('track', 'Contact', { content_name: 'whatsapp', content_category: secaoDe(a) });
+      (window.dataLayer = window.dataLayer || []).push({ event: 'clique_whatsapp', secao: secaoDe(a) });
     });
   });
 
@@ -429,6 +441,7 @@ footer p{line-height:1.5}
   document.querySelectorAll('[data-track="instagram"]').forEach(function(a){
     a.addEventListener('click', function(){
       if (window.fbq) fbq('trackCustom', 'ClickInstagram', { content_category: secaoDe(a) });
+      (window.dataLayer = window.dataLayer || []).push({ event: 'clique_instagram', secao: secaoDe(a) });
     });
   });
 </script>
