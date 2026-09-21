@@ -429,12 +429,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ultimoY = window.scrollY;
   }, { passive: true });
 
-  // ---- WhatsApp: evento padrão "Lead" (pode ser usado como conversão da campanha) ----
+  // ---- WhatsApp: clique vai para o dataLayer; o evento "Lead" do pixel é disparado pelo GTM ----
+  // primeiro_clique = true só no 1º clique da sessão (para contar 1 Lead por pessoa, não por clique)
+  function primeiroCliqueDaSessao(){
+    try { if (sessionStorage.getItem('wa_click')) return false; sessionStorage.setItem('wa_click','1'); return true; }
+    catch(e){ return true; }
+  }
   document.querySelectorAll('a.wa').forEach(function(a){
     a.href = link;
     a.addEventListener('click', function(){
-      if (window.fbq) fbq('track', 'Lead', { content_name: 'whatsapp', content_category: secaoDe(a) });
-      (window.dataLayer = window.dataLayer || []).push({ event: 'clique_whatsapp', secao: secaoDe(a) });
+      (window.dataLayer = window.dataLayer || []).push({ event: 'clique_whatsapp', secao: secaoDe(a), primeiro_clique: primeiroCliqueDaSessao() });
     });
   });
 
