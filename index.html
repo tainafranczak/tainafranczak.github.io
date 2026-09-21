@@ -438,7 +438,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.querySelectorAll('a.wa').forEach(function(a){
     a.href = link;
     a.addEventListener('click', function(){
-      (window.dataLayer = window.dataLayer || []).push({ event: 'clique_whatsapp', secao: secaoDe(a), primeiro_clique: primeiroCliqueDaSessao() });
+      var primeiro = primeiroCliqueDaSessao();
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'clique_whatsapp', secao: secaoDe(a), primeiro_clique: primeiro }); // todo clique (analytics)
+      if (primeiro) window.dataLayer.push({ event: 'lead_whatsapp', secao: secaoDe(a) });                // só o 1º da sessão → Lead no Meta
     });
   });
 
